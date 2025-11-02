@@ -1,0 +1,114 @@
+:root {
+  --bg: #0b0f14;
+  --fg: #e6edf3;
+  --muted: #9fb0c3;
+  --accent: #7cc5ff;
+  --accent2: #a8ff60;
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--fg);
+  font:
+    16px/1.5 system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    Ubuntu,
+    Cantarell,
+    Noto Sans,
+    sans-serif;
+}
+#leptos {
+  height: 100%;
+}
+.app {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+.slide {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+.h1 {
+  font-size: 3rem;
+  margin: 0 0 1rem;
+  letter-spacing: -0.02em;
+}
+.h2 {
+  font-size: 1.6rem;
+  margin: 2rem 0 0.5rem;
+}
+.lead {
+  font-size: 1.25rem;
+  color: var(--muted);
+}
+kbd {
+  background: #101923;
+  border: 1px solid #1e2a3a;
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-family: ui-monospace;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-top: 1px solid #1e2a3a;
+  background: #0e141b;
+}
+.progress {
+  height: 4px;
+  background: #1e2a3a;
+  position: relative;
+  overflow: hidden;
+}
+.progress > span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  transition: width 0.2s ease;
+}
+.btn {
+  border: 1px solid #1e2a3a;
+  background: #101923;
+  color: var(--fg);
+  padding: 0.5rem 0.9rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.list {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding-left: 1.25rem;
+}
+.note {
+  color: var(--muted);
+}
+.code {
+  background: #0d1a26;
+  border: 1px solid #1e2a3a;
+  padding: 1rem;
+  border-radius: 12px;
+  overflow: auto;
+}
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #1e2a3a;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
