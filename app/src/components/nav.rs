@@ -51,26 +51,28 @@ pub fn Nav() -> impl IntoView {
     let progress_width = move || ((index.get() + 1) as f32 / SLIDES.len() as f32) * 100.0;
 
     view! {
-        <nav class="navbar">
-            <div class="note">
-                "Tasten: "
-                <kbd>{"←"}</kbd> "/"
-                <kbd>{"→"}</kbd>
+        <div>
+            <nav class="navbar">
+                <div class="note">
+                    "Tasten: "
+                    <kbd>{"←"}</kbd> "/"
+                    <kbd>{"→"}</kbd>
                 </div>
-            <div>
-                <button class="btn" on:click=move |_| {
-                    let i = index.get();
-                    let j = i.saturating_sub(1);
-                    nav_back(SLIDES[j], Default::default());
-                }>"Zurueck"</button>
-                <span style="display:inline-block;width:.5rem"></span>
-                <button class="btn" on:click=move |_| {
-                    let i = index.get();
-                    let j = (i + 1).min(SLIDES.len() - 1);
-                    nav_next(SLIDES[j], Default::default());
-                }>"Weiter"</button>
-            </div>
-        </nav>
-        <div class="progress"><span style=move || format!("width: {:.2}%", progress_width())></span></div>
+                <div>
+                    <button class="btn" on:click=move |_| {
+                        let i = index.get();
+                        let j = i.saturating_sub(1);
+                        nav_back(SLIDES[j], Default::default());
+                    }>"Zurueck"</button>
+                    <span style="display:inline-block;width:.5rem"></span>
+                    <button class="btn" on:click=move |_| {
+                        let i = index.get();
+                        let j = (i + 1).min(SLIDES.len() - 1);
+                        nav_next(SLIDES[j], Default::default());
+                    }>"Weiter"</button>
+                </div>
+            </nav>
+            <div class="progress"><span style=move || format!("width: {:.2}%", progress_width())></span></div>
+        </div>
     }
 }
