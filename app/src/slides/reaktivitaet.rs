@@ -67,6 +67,31 @@ view! {
 });
 "#;
 
+    let code_view_effect = r#"let (count, set_count) = signal(0);
+view! {
+    <p>{count}</p>
+}"#;
+
+    let code_view_effect_expanded = r#"let (count, set_count) = signal(0);
+
+// create a DOM element
+let document = leptos::document();
+let p = document.create_element("p").unwrap();
+
+// create an effect to reactively update the text
+Effect::new(move |prev_value: Option<String>| {
+    // first, access the signal’s value and convert it to a string
+    let text = count.get().to_string();
+
+    // if this is different from the previous value, update the node
+    if prev_value.as_ref() != Some(&text) {
+        p.set_text_content(Some(&text));
+    }
+
+    // return this value so we can memoize the next update
+    text
+});"#;
+
     view! {
         <section class="slide">
             <h2 class="h2">"Fine-grained Reactivity (Live)"</h2>
@@ -168,36 +193,13 @@ view! {
             <p>"Der Leptos DOM-Renderer stellt die Funktionalität von Effects bereit. Effektiv werden Aufrufe von Signals innerhalb von Views in einen Effect übersetzt, wie unten dargestellt."</p>
 
             <div class="code-container">
-                <pre><code class="language-rust">r#"let (count, set_count) = signal(0);
-view! {
-    <p>{count}</p>
-}"#
-                </code></pre>
+                <pre><code class="language-rust">{code_view_effect}</code></pre>
             </div>
 
             <p>"wird zu:"</p>
 
             <div class="code-container">
-                <pre><code class="language-rust">r#"let (count, set_count) = signal(0);
-
-// create a DOM element
-let document = leptos::document();
-let p = document.create_element("p").unwrap();
-
-// create an effect to reactively update the text
-Effect::new(move |prev_value| {
-    // first, access the signal’s value and convert it to a string
-    let text = count.get().to_string();
-
-    // if this is different from the previous value, update the node
-    if prev_value != Some(text) {
-        p.set_text_content(&text);
-    }
-
-    // return this value so we can memoize the next update
-    text
-});"#
-                </code></pre>
+                <pre><code class="language-rust">{code_view_effect_expanded}</code></pre>
             </div>
 
             <h3 class="h3">"Weiterführende Ressourcen"</h3>
