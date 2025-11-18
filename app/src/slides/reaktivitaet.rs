@@ -5,21 +5,10 @@ use leptos::logging;
 
 #[component]
 pub fn Reaktivitaet() -> impl IntoView {
+    // Signal example
     let (count, set_count) = signal(0);
     
-    let code_signals = r#"let (count, set_count) = signal(0);
-
-view! {
-    <button class="btn" on:click=move |_| set_count.update(|c| *c += 1)>
-    {move || format!("Klicks: {}", count.get())}
-    </button>
-    <button class="btn" on:click=move |_| set_count.set(count.get() + 1)>
-    {move || format!("Klicks: {}", count.get())}
-    </button>
-    <button class="btn" on:click=move |_| *set_count.write() += 1>
-        {move || format!("Klicks: {}", count.get())}
-    </button>
-}"#;
+    // Memo/Derived Signal example
 
     let (first_name, set_first_name) = signal("John".to_string());
     let (last_name, set_last_name) = signal("Doe".to_string());
@@ -29,70 +18,19 @@ view! {
         format!("{} {}", first_name.get(), last_name.get())
     });
 
-    let code_memos = r#"let (first_name, set_first_name) = signal("John".to_string());
-let (last_name, set_last_name) = signal("Doe".to_string());
-let derived_signal_full_name = move ||
-    format!("{} {}", first_name.get(), last_name.get());
-let memo_full_name = Memo::new(move |_| {
-    format!("{} {}", first_name.get(), last_name.get())
-});
-
-view! {
-    <input
-        type="text"
-        placeholder="Vorname"
-        on:input:target=move |ev| {
-            set_first_name(ev.target().value());
-        }
-        prop:value=first_name
-    />
-    <input
-        type="text"
-        placeholder="Nachname"
-        on:input:target=move |ev| {
-            set_last_name(ev.target().value());
-        }
-        prop:value=last_name
-    />
-    <p>"Derived Signal: " {derived_signal_full_name}</p>
-    <p>"Memo: " {memo_full_name}</p>}
-}"#;
+    // Effect example
 
     Effect::new(move |_| {
         logging::log!("Count changed to: {}", count.get());
     });
 
-    let code_effect = r#"Effect::new(move |_| {
-    logging::log!("Count changed to: {}", count.get());
-});
-"#;
-
-    let code_view_effect = r#"let (count, set_count) = signal(0);
-view! {
-    <p>{count}</p>
-}"#;
-
-    let code_view_effect_expanded = r#"let (count, set_count) = signal(0);
-
-// create a DOM element
-let document = leptos::document();
-let p = document.create_element("p").unwrap();
-
-// create an effect to reactively update the text
-Effect::new(move |prev_value: Option<String>| {
-    // first, access the signal’s value and convert it to a string
-    let text = count.get().to_string();
-
-    // if this is different from the previous value, update the node
-    if prev_value.as_ref() != Some(&text) {
-        p.set_text_content(Some(&text));
-    }
-
-    // return this value so we can memoize the next update
-    text
-});"#;
+    // View
 
     view! {
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js"></script>
+
         <section class="slide">
             <h2 class="h2">"Fine-grained Reactivity (Live)"</h2>
 
@@ -120,7 +58,21 @@ Effect::new(move |prev_value: Option<String>| {
 
             <div class="h-bar">
                 <div class="code-container">
-                    <pre><code class="language-rust">{code_signals}</code></pre>
+                    <pre><code class="language-rust">
+r#"let (count, set_count) = signal(0);
+
+view! {
+    <button class="btn" on:click=move |_| set_count.update(|c| *c += 1)>
+    {move || format!("Klicks: {}", count.get())}
+    </button>
+    <button class="btn" on:click=move |_| set_count.set(count.get() + 1)>
+    {move || format!("Klicks: {}", count.get())}
+    </button>
+    <button class="btn" on:click=move |_| *set_count.write() += 1>
+        {move || format!("Klicks: {}", count.get())}
+    </button>
+}"#
+                    </code></pre>
                 </div>
                 <div class="live-container">
                     <button class="btn" on:click=move |_| set_count.update(|c| *c += 1)>
@@ -149,7 +101,36 @@ Effect::new(move |prev_value: Option<String>| {
 
             <div class="h-bar">
                 <div class="code-container">
-                    <pre><code class="language-rust">{code_memos}</code></pre>
+                    <pre><code class="language-rust">
+r#"let (first_name, set_first_name) = signal("John".to_string());
+let (last_name, set_last_name) = signal("Doe".to_string());
+let derived_signal_full_name = move ||
+    format!("{} {}", first_name.get(), last_name.get());
+let memo_full_name = Memo::new(move |_| {
+    format!("{} {}", first_name.get(), last_name.get())
+});
+
+view! {
+    <input
+        type="text"
+        placeholder="Vorname"
+        on:input:target=move |ev| {
+            set_first_name(ev.target().value());
+        }
+        prop:value=first_name
+    />
+    <input
+        type="text"
+        placeholder="Nachname"
+        on:input:target=move |ev| {
+            set_last_name(ev.target().value());
+        }
+        prop:value=last_name
+    />
+    <p>"Derived Signal: " {derived_signal_full_name}</p>
+    <p>"Memo: " {memo_full_name}</p>}
+}"#
+                    </code></pre>
                 </div>
                 <div class="live-container">
                     <input
@@ -183,7 +164,12 @@ Effect::new(move |prev_value: Option<String>| {
 
             <div class="h-bar">
                 <div class="code-container">
-                    <pre><code class="language-rust">{code_effect}</code></pre>
+                    <pre><code class="language-rust">
+r#"Effect::new(move |_| {
+    logging::log!("Count changed to: {}", count.get());
+});
+"#
+                    </code></pre>
                 </div>
                 <div class="live-container">
                     <p>"Öffne die Konsole, um den Effect zu sehen."</p>
@@ -193,13 +179,38 @@ Effect::new(move |prev_value: Option<String>| {
             <p>"Der Leptos DOM-Renderer stellt die Funktionalität von Effects bereit. Effektiv werden Aufrufe von Signals innerhalb von Views in einen Effect übersetzt, wie unten dargestellt."</p>
 
             <div class="code-container">
-                <pre><code class="language-rust">{code_view_effect}</code></pre>
+                <pre><code class="language-rust">
+r#"let (count, set_count) = signal(0);
+view! {
+    <p>{count}</p>
+}"#
+                </code></pre>
             </div>
 
             <p>"wird zu:"</p>
 
             <div class="code-container">
-                <pre><code class="language-rust">{code_view_effect_expanded}</code></pre>
+                <pre><code class="language-rust">
+r#"let (count, set_count) = signal(0);
+
+// create a DOM element
+let document = leptos::document();
+let p = document.create_element("p").unwrap();
+
+// create an effect to reactively update the text
+Effect::new(move |prev_value: Option<String>| {
+    // first, access the signal’s value and convert it to a string
+    let text = count.get().to_string();
+
+    // if this is different from the previous value, update the node
+    if prev_value.as_ref() != Some(&text) {
+        p.set_text_content(Some(&text));
+    }
+
+    // return this value so we can memoize the next update
+    text
+});"#
+            </code></pre>
             </div>
 
             <h3 class="h3">"Weiterführende Ressourcen"</h3>
