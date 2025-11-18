@@ -200,6 +200,14 @@ Effect::new(move |prev_value| {
                 </code></pre>
             </div>
 
+            <h3 class="h3">"Weiterführende Ressourcen"</h3>
+
+            <ul>
+                <li><a href="https://book.leptos.dev/reactivity/working_with_signals.html" target="_blank">"Leptos Docs: Signals and Computed"</a></li>
+                <li><a href="https://book.leptos.dev/reactivity/14_create_effect.html" target="_blank">"Leptos Docs: Effects"</a></li>
+                <li><a href="https://book.leptos.dev/appendix_reactive_graph.html" target="_blank">"Leptos Docs: How does the Reactive System Work?"</a></li>
+            </ul>
+
         </section>
     }
 }
