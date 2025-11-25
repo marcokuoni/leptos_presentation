@@ -4,9 +4,9 @@ use leptos::prelude::*;
 pub fn Intro() -> impl IntoView {
     view! {
         <section class="slide">
-            <h1 class="h1">"Leptos: Reactive Rust fuers Web"</h1>
+            <h1 class="h1">"Leptos: Reactive Rust fürs Web"</h1>
             <p class="lead">
-                "Praesentation in Leptos: SSR + Hydration, Router, Tasten & Serverfunktionen."
+                "Präsentation in Leptos: SSR + Hydration, Router, Tasten & Serverfunktionen."
             </p>
             <div style="margin-top:2rem">
                 <span class="badge">"Rust"</span>
