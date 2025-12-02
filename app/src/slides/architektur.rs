@@ -22,7 +22,7 @@ pub fn Architektur() -> impl IntoView {
                 <li>
                     <b>Fine-grained Reactivity</b>
                     :
-                    "Signale, Memos, Ressourcen"
+                    "Signals, Memos, Effects"
                 </li>
                 <li>
                     <b>Router</b>
