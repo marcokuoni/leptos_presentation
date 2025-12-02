@@ -129,18 +129,30 @@ kbd {
   margin: 0px;
   border-radius: 12px;
   overflow: auto;
-  height: 100%;
   text-shadow: 0px;
 }
 
 .live-container {
   background: #0d1a26;
   border: 1px solid #1e2a3a;
-  padding: 1rem;
+  margin: .5em 0;
+  padding: 1em;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1rem;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+a:hover, a:focus {
+  color: var(--accent2);
+  border-bottom: 1px solid var(--accent2);
 }
