@@ -63,9 +63,10 @@ pub fn App() -> impl IntoView {
         // injects a stylesheet into the document <head>
         // id=leptos means cargo-leptos will hot-reload this stylesheet
         <Stylesheet id="leptos" href="/pkg/app.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-vsc-dark-plus.min.css" />
 
         // sets the document title
-        <Title text="Welcome to Leptos"/>
+        <Title text="Leptos Präsentation"/>
 
         // content for this welcome page
         <Router>

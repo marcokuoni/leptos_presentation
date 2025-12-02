@@ -63,7 +63,7 @@ pub fn Nav() -> impl IntoView {
                         let i = index.get();
                         let j = i.saturating_sub(1);
                         nav_back(SLIDES[j], Default::default());
-                    }>"Zurueck"</button>
+                    }>"Zurück"</button>
                     <span style="display:inline-block;width:.5rem"></span>
                     <button class="btn" on:click=move |_| {
                         let i = index.get();
