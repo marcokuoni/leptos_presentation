@@ -22,12 +22,12 @@ pub fn Serverfunktionen() -> impl IntoView {
             <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
                 <input
                     class="btn"
-                    prop:value=owner()
+                    value=owner
                     on:input=move |ev| set_owner(event_target_value(&ev))
                 />
                 <input
                     class="btn"
-                    prop:value=repo()
+                    value=repo
                     on:input=move |ev| set_repo(event_target_value(&ev))
                 />
                 <button class="btn" on:click=move |_| stars.refetch()>
@@ -38,8 +38,10 @@ pub fn Serverfunktionen() -> impl IntoView {
                 <Suspense>
                     {move || match stars.get() {
                         None => view! { <span class="note">"(noch nichts geladen)"</span> },
-                        Some(None) => view! { <span class="note">"Fehler oder Rate Limit."</span> },
-                        Some(Some(n)) => view! { <span class="note">{format!("⭐ {} Sterne", n)}</span> },
+                        Some(value) => match value {
+                            None => view! { <span class="note">"Fehler oder Rate Limit."</span> },
+                            Some(n) => view! { <span class="note">{format!("⭐ {} Sterne", n)}</span> }
+                        }
                     }}
                 </Suspense>
             </p>

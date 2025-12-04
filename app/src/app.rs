@@ -75,11 +75,11 @@ pub fn App() -> impl IntoView {
                     <Route path=StaticSegment("") view=crate::slides::Intro/>
                     <Route path=StaticSegment("architektur") view=crate::slides::Architektur/>
                     <Route path=StaticSegment("reaktivitaet") view=crate::slides::Reaktivitaet/>
+                    <Route path=StaticSegment("different") view=crate::slides::Different/>
                     <Route path=StaticSegment("serverfunktionen") view=crate::slides::Serverfunktionen/>
-                    <Route path=StaticSegment("performance") view=crate::slides::Performance/>
-                    <Route path=StaticSegment("ecosystem") view=crate::slides::Ecosystem/>
                     <Route path=StaticSegment("playground") view=crate::slides::Playground/>
-                    <Route path=StaticSegment("fazit") view=crate::slides::Fazit/>
+                    <Route path=StaticSegment("wasm") view=crate::slides::Wasm/>
+                    <Route path=StaticSegment("qwik") view=crate::slides::Qwik/>
                 </Routes>
             </main>
             <crate::components::Nav />
