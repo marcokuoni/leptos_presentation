@@ -7,17 +7,17 @@ pub use architektur::Architektur;
 pub mod reaktivitaet;
 pub use reaktivitaet::Reaktivitaet;
 
+pub mod different;
+pub use different::Different;
+
 pub mod serverfunktionen;
 pub use serverfunktionen::Serverfunktionen;
 
-pub mod performance;
-pub use performance::Performance;
+pub mod qwik;
+pub use qwik::Qwik;
 
-pub mod ecosystem;
-pub use ecosystem::Ecosystem;
-
-pub mod fazit;
-pub use fazit::Fazit;
+pub mod wasm;
+pub use wasm::Wasm;
 
 pub mod playground;
 pub use playground::Playground;

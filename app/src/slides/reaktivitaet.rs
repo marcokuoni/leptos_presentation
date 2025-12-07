@@ -1,5 +1,5 @@
-use leptos::prelude::*;
 use leptos::logging;
+use leptos::prelude::*;
 
 // TODO: add code on site, maybe interactive?
 
@@ -7,16 +7,13 @@ use leptos::logging;
 pub fn Reaktivitaet() -> impl IntoView {
     // Signal example
     let (count, set_count) = signal(0);
-    
+
     // Memo/Derived Signal example
 
     let (first_name, set_first_name) = signal("John".to_string());
     let (last_name, set_last_name) = signal("Doe".to_string());
-    let derived_signal_full_name = move || 
-        format!("{} {}", first_name.get(), last_name.get());
-    let memo_full_name = Memo::new(move |_| {
-        format!("{} {}", first_name.get(), last_name.get())
-    });
+    let derived_signal_full_name = move || format!("{} {}", first_name.get(), last_name.get());
+    let memo_full_name = Memo::new(move |_| format!("{} {}", first_name.get(), last_name.get()));
 
     // Effect example
 
@@ -91,7 +88,7 @@ view! {
 
             <p>"Memos sind abgeleitete Werte, die automatisch neu berechnet werden,
             wenn sich die Signale, von denen sie abhängen, ändern."</p>
-            
+
             <p>"
             Es existiert zudem ein Konzept namens \"derived signals\", welches Rust-Closures verwendet.
             Dadurch wird der Wert der Closure bei jedem Zugriff neu berechnet, 
@@ -117,7 +114,7 @@ view! {
         on:input:target=move |ev| {
             set_first_name(ev.target().value());
         }
-        prop:value=first_name
+        value=first_name
     />
     <input
         type="text"
@@ -125,7 +122,7 @@ view! {
         on:input:target=move |ev| {
             set_last_name(ev.target().value());
         }
-        prop:value=last_name
+        value=last_name
     />
     <p>"Derived Signal: " {derived_signal_full_name}</p>
     <p>"Memo: " {memo_full_name}</p>}
@@ -139,7 +136,7 @@ view! {
                         on:input:target=move |ev| {
                             set_first_name(ev.target().value());
                         }
-                        prop:value=first_name
+                        value=first_name
                     />
                     <input
                         type="text"
@@ -147,7 +144,7 @@ view! {
                         on:input:target=move |ev| {
                             set_last_name(ev.target().value());
                         }
-                        prop:value=last_name
+                        value=last_name
                     />
                     <p>"Derived Signal: " {derived_signal_full_name}</p>
                     <p>"Memo: " {memo_full_name}</p>
@@ -159,7 +156,7 @@ view! {
             <p>"Effects ermöglichen es, Side Effects zu verwalten,
             wie z.B. das Aktualisieren des DOM oder das Durchführen von API-Aufrufen, wenn sich Signals verändern."</p>
 
-            <p>"Effects dienen dazu, das reaktive System mit der nicht-reaktiven Aussenwelt zu synchronisieren, 
+            <p>"Effects dienen dazu, das reaktive System mit der nicht-reaktiven Aussenwelt zu synchronisieren,
             nicht dazu, verschiedene reaktive Werte miteinander zu synchronisieren. Für diesen Use-Case sollten Memos oder derived signals verwendet werden."</p>
 
             <div class="h-bar">

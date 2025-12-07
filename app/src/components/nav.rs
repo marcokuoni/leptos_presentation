@@ -15,11 +15,11 @@ pub fn Nav() -> impl IntoView {
         "/",
         "/architektur",
         "/reaktivitaet",
+        "/different",
         "/serverfunktionen",
-        "/performance",
-        "/ecosystem",
         "/playground",
-        "/fazit",
+        "/wasm",
+        "/qwik",
     ];
 
     let index = Memo::new(move |_| {
