@@ -24,7 +24,7 @@ pub fn Intro() -> impl IntoView {
                 <li>"SEP Project: URL Shortener"</li>
                 <li>"Full-stack Rust"</li>
                 <li>"Steile Lernkurve"</li>
-                <li>"Perfomant und typsicher"</li>
+                <li>"Performant und typsicher"</li>
                 <li>"Ökosystem und Tooling"</li>
             </ul>
         </section>
