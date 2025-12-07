@@ -9,7 +9,7 @@ pub fn Wasm() -> impl IntoView {
             <h2 class="h2">"WebAssembly"</h2>
             <ul class="list">
                 <li>"Intermediate language"</li>
-                <li>"Compiliert von verschiedenen Sprachen"</li>
+                <li>"Kompiliert von verschiedenen Sprachen"</li>
                 <li>"Harvard Stackmachine"</li>
                 <li>"Sandboxed"</li>
                 <li>"WASI/WIT"</li>
